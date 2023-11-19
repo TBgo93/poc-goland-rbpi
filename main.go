@@ -5,19 +5,19 @@ import (
 	"strconv"
 	"time"
 
-	// "github.com/TBgo93/poc-goland-rbpi/display"
+	"github.com/TBgo93/poc-goland-rbpi/display"
 	"github.com/TBgo93/poc-goland-rbpi/textview"
 	"github.com/TBgo93/poc-goland-rbpi/utils"
 )
 
 func main() {
-	// dsp, err := display.Init()
-	// if err != nil {
-	// 	dsp.Close()
-	// 	panic(err)
-	// }
+	dsp, err := display.Init()
+	if err != nil {
+		dsp.Close()
+		panic(err)
+	}
 
-	// dsp.Rotate(display.ROTATION_90)
+	dsp.Rotate(display.ROTATION_90)
 
 	// Draw a text
 	opts := textview.DefaultOpts
