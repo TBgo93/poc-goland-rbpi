@@ -31,7 +31,7 @@ type Options struct {
 }
 
 var DefaultOpts = Options{
-	FontSize: 18,
+	FontSize: 16,
 	BGColor:  Color{0, 0, 0},
 	FGColor:  Color{255, 255, 255},
 }
@@ -60,6 +60,7 @@ func NewWithOptions(opts Options) *TextView {
 	if err != nil {
 		panic(err)
 	}
+	tv.dsp.Rotate(display.ROTATION_90)
 
 	return tv
 }
