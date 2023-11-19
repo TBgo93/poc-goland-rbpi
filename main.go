@@ -2,25 +2,22 @@ package main
 
 import (
 	"fmt"
-	"image/color"
 	"strconv"
 	"time"
 
-	"github.com/TBgo93/poc-goland-rbpi/display"
+	// "github.com/TBgo93/poc-goland-rbpi/display"
 	"github.com/TBgo93/poc-goland-rbpi/textview"
 	"github.com/TBgo93/poc-goland-rbpi/utils"
 )
 
 func main() {
-	dsp, err := display.Init()
-	if err != nil {
-		panic(err)
-	}
-	defer dsp.Close()
+	// dsp, err := display.Init()
+	// if err != nil {
+	// 	dsp.Close()
+	// 	panic(err)
+	// }
 
-	dsp.Rotate(display.ROTATION_90)
-	// Set the screen color to black
-	dsp.FillScreen(color.RGBA{R: 0, G: 0, B: 0, A: 1})
+	// dsp.Rotate(display.ROTATION_90)
 
 	// Draw a text
 	opts := textview.DefaultOpts
