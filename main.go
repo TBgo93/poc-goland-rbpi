@@ -15,9 +15,10 @@ func main() {
 	for {
 		mem := utils.ReadMemoryStats()
 		RAM := mem.MemTotal - mem.MemAvailable
-		text := strconv.Itoa(RAM) + "%"
+		text := strconv.Itoa(RAM) + "%" // Esta mal calculado
 
-		tv.Draw("")
+		// Funciona pero muestra una linea, se resetea
+		// y vuelve a mostrar linea
 		tv.DrawChars("Stats: ")
 		tv.DrawChars(text)
 
