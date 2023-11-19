@@ -60,7 +60,6 @@ func NewWithOptions(opts Options) *TextView {
 	if err != nil {
 		panic(err)
 	}
-	tv.dsp.Rotate(display.ROTATION_90)
 
 	return tv
 }
