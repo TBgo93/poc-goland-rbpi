@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"image/color"
 	"strconv"
 	"time"
@@ -28,6 +29,7 @@ func main() {
 		mem := utils.ReadMemoryStats()
 		RAM := mem.MemTotal - mem.MemAvailable
 		text := strconv.Itoa(RAM) + "%"
+		fmt.Println("Bucle...")
 
 		tv.Draw(text)
 		time.Sleep(3 * time.Second)
