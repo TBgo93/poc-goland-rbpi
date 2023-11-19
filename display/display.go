@@ -46,7 +46,7 @@ func Init() (*Display, error) {
 	var err error
 	once.Do(func() {
 		display = &Display{}
-		display.p, err = spireg.Open("SPI0.0")
+		display.p, err = spireg.Open("SPI0.1")
 		if err != nil {
 			return
 		}

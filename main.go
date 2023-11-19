@@ -17,7 +17,7 @@ func main() {
 		panic(err)
 	}
 
-	dsp.Rotate(display.ROTATION_90)
+	dsp.Rotate(display.NO_ROTATION)
 
 	// Draw a text
 	opts := textview.DefaultOpts
