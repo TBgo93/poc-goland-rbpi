@@ -14,13 +14,13 @@ func main() {
 	tv := textview.NewWithOptions(opts)
 	for {
 		mem := utils.ReadMemoryStats()
-		RAM := mem.MemTotal - mem.MemAvailable
-		text := strconv.Itoa(RAM) + "%" // Esta mal calculado
+		freeRamPercentage := (mem.MemTotal - mem.MemAvailable) * 100 / mem.MemTotal
+		parsedFreeRamPercentage := strconv.Itoa(freeRamPercentage) + "%"
 
 		// Funciona pero muestra una linea, se resetea
 		// y vuelve a mostrar linea
-		tv.DrawChars("Stats: ")
-		tv.DrawChars(text)
+		tv.Draw("Stats: ")
+		tv.DrawChars(parsedFreeRamPercentage)
 
 		time.Sleep(3 * time.Second)
 	}
