@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"image/color"
+	"strconv"
 	"time"
 
 	"github.com/TBgo93/poc-goland-rbpi/display"
@@ -26,10 +26,11 @@ func main() {
 	tv := textview.NewWithOptions(opts)
 	for true == true {
 		mem := utils.ReadMemoryStats()
-		RAM := fmt.Sprint(mem.MemTotal-mem.MemAvailable, "%")
+		RAM := mem.MemTotal - mem.MemAvailable
+		text := strconv.Itoa(RAM) + "%"
 
 		tv.Draw("")
-		tv.DrawChars(RAM)
+		tv.DrawChars(text)
 		time.Sleep(3 * time.Second)
 	}
 }
