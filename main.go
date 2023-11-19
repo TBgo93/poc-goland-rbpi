@@ -25,7 +25,7 @@ func main() {
 	// Draw a text
 	opts := textview.DefaultOpts
 	tv := textview.NewWithOptions(opts)
-	for true == true {
+	for {
 		mem := utils.ReadMemoryStats()
 		RAM := mem.MemTotal - mem.MemAvailable
 		text := strconv.Itoa(RAM) + "%"
