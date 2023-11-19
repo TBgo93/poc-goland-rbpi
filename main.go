@@ -30,5 +30,4 @@ func main() {
 		tv.Draw(fmt.Sprint(mem.MemTotal-mem.MemAvailable, "%"))
 		time.Sleep(3 * time.Second)
 	}
-
 }
