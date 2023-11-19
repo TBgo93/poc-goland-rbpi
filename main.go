@@ -26,8 +26,10 @@ func main() {
 	tv := textview.NewWithOptions(opts)
 	for true == true {
 		mem := utils.ReadMemoryStats()
+		RAM := fmt.Sprint(mem.MemTotal-mem.MemAvailable, "%")
 
-		tv.Draw(fmt.Sprint(mem.MemTotal-mem.MemAvailable, "%"))
+		tv.Draw("")
+		tv.DrawChars(RAM)
 		time.Sleep(3 * time.Second)
 	}
 }

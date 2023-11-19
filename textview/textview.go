@@ -3,6 +3,7 @@ package textview
 import (
 	"os"
 	"strings"
+	"time"
 
 	"github.com/TBgo93/poc-goland-rbpi/display"
 	"github.com/fogleman/gg"
@@ -107,15 +108,15 @@ func (t *TextView) drawText(text string) {
 	}
 }
 
-// func (t *TextView) DrawChars(text string) {
-// 	drawn := ""
-// 	for _, s := range text {
-// 		drawn += string(s)
-// 		t.Draw(drawn)
-// 		t.clearContext()
-// 		time.Sleep(50 * time.Millisecond)
-// 	}
-// }
+func (t *TextView) DrawChars(text string) {
+	drawn := ""
+	for _, s := range text {
+		drawn += string(s)
+		t.Draw(drawn)
+		t.clearContext()
+		time.Sleep(50 * time.Millisecond)
+	}
+}
 
 func (t *TextView) clearContext() {
 	t.dc.SetRGB255(t.bgColor[0], t.bgColor[1], t.bgColor[2])
