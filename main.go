@@ -25,14 +25,13 @@ func main() {
 	// Draw a text
 	opts := textview.DefaultOpts
 	tv := textview.NewWithOptions(opts)
-	mem := utils.ReadMemoryStats()
-	RAM := mem.MemTotal - mem.MemAvailable
-	text := strconv.Itoa(RAM) + "%"
-	fmt.Println("Bucle...")
-
-	tv.Draw("")
-	tv.DrawChars(text)
 	for {
+		mem := utils.ReadMemoryStats()
+		RAM := mem.MemTotal - mem.MemAvailable
+		text := strconv.Itoa(RAM) + "%"
+		fmt.Println(text)
+
+		tv.Draw(text)
 		time.Sleep(3 * time.Second)
 	}
 }
