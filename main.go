@@ -20,7 +20,7 @@ func main() {
 
 	dsp.Rotate(display.ROTATION_90)
 	// Set the screen color to white
-	dsp.FillScreen(color.RGBA{R: 0, G: 0, B: 0, A: 0})
+	dsp.FillScreen(color.RGBA{R: 255, G: 255, B: 255, A: 0})
 
 	// Draw a text
 	opts := textview.DefaultOpts
