@@ -67,8 +67,7 @@ func NewWithOptions(opts Options) *TextView {
 func (t *TextView) loadFont(path string) {
 	fonts := []string{
 		path,
-		"/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-		"/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+		"/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
 	}
 
 	floaded := false
