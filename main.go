@@ -29,8 +29,7 @@ func main() {
 		RAM := mem.MemTotal - mem.MemAvailable
 		text := strconv.Itoa(RAM) + "%"
 
-		tv.Draw("")
-		tv.DrawChars(text)
+		tv.Draw(text)
 		time.Sleep(3 * time.Second)
 	}
 }
