@@ -31,7 +31,8 @@ func main() {
 		text := strconv.Itoa(RAM) + "%"
 		fmt.Println("Bucle...")
 
-		tv.Draw(text)
+		tv.Draw("")
+		tv.DrawChars(text)
 		time.Sleep(3 * time.Second)
 	}
 }
