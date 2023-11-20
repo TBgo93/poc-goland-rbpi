@@ -19,8 +19,15 @@ func main() {
 
 		// Funciona pero muestra una linea, se resetea
 		// y vuelve a mostrar linea
-		tv.DrawChars("Stats: " + "\n" + parsedFreeRamPercentage)
+		// tv.DrawChars("Stats: " + "\n" + parsedFreeRamPercentage)
+		ram := "Uso de RAM: " + parsedFreeRamPercentage
+		var arrayTexts []string
 
-		time.Sleep(3 * time.Second)
+		arrayTexts[0] = "Stats: "
+		arrayTexts[1] = ram
+
+		tv.DrawFrames(arrayTexts)
+
+		time.Sleep(1 * time.Second)
 	}
 }
