@@ -23,8 +23,8 @@ func main() {
 		ram := "Uso de RAM: " + parsedFreeRamPercentage
 		var arrayTexts []string
 
-		arrayTexts[0] = "Stats: "
-		arrayTexts[1] = ram
+		arrayTexts = append(arrayTexts, "Stats: ")
+		arrayTexts = append(arrayTexts, ram)
 
 		tv.DrawFrames(arrayTexts)
 
