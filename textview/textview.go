@@ -138,9 +138,15 @@ func (t *TextView) drawToDisplay(text string) {
 	t.dsp.DrawRAW(t.dc.Image())
 }
 
-func (t *TextView) DrawFrames(textFrames []string) {
-	for _, f := range textFrames {
-		t.Draw(f)
-		time.Sleep(50 * time.Millisecond)
+func (t *TextView) DrawListOfStrings(list []string) {
+	drawn := ""
+
+	for _, l := range list {
+		drawn += string(l)
+		drawn += string("\n")
 	}
+
+	t.Draw(drawn)
+	t.clearContext()
+	time.Sleep(50 * time.Millisecond)
 }

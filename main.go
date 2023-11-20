@@ -26,7 +26,7 @@ func main() {
 		arrayTexts = append(arrayTexts, "Stats: ")
 		arrayTexts = append(arrayTexts, ram)
 
-		tv.DrawFrames(arrayTexts)
+		tv.DrawListOfStrings(arrayTexts)
 
 		time.Sleep(1 * time.Second)
 	}
