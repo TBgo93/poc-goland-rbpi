@@ -13,18 +13,16 @@ import (
 )
 
 func main() {
-	sigs := make(chan os.Signal, 1)
-	done := make(chan bool, 1)
-
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
 
 	go func() {
-		sig := <-sigs
-		fmt.Println(sig)
-		done <- true
+		for sig := range c {
+			fmt.Println(sig)
+			fmt.Println("Exiting...")
+			os.Exit(1)
+		}
 	}()
-	<-done
-	fmt.Println("Exiting...")
 
 	opts := textview.DefaultOpts
 	tv := textview.NewWithOptions(opts)
