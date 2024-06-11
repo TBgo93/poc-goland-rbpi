@@ -2,32 +2,14 @@ package utils
 
 import (
 	"bufio"
-	"errors"
 	"fmt"
 	"log"
 	"net"
 	"os"
 	"strconv"
 	"strings"
-	"time"
-)
 
-const (
-	cpuTicks  = 100
-	cpuFields = 8
-	cpuMax    = 1000
-	statFile  = "/proc/stat"
-)
-
-type (
-	textReadOptions struct {
-		keepSpace     bool
-		withoutBlanks bool
-		omitPrefix    string
-	}
-
-	// TextReadOption defines the method to customize the text reading functions.
-	TextReadOption func(*textReadOptions)
+	"github.com/shirou/gopsutil/cpu"
 )
 
 type Memory struct {
@@ -90,34 +72,13 @@ func GetTempCore() string {
 	return fmt.Sprintf("Temp: %d °C", calculatedTemp)
 }
 
-func SystemCpuUsage() (uint64, error) {
-	lines, err := readTextLines(statFile, withoutBlank())
+func GetCPUInfo() string {
+	percentageCpu, err := cpu.Percent(0, false)
 	if err != nil {
-		return 0, err
+		panic(err)
 	}
 
-	for _, line := range lines {
-		fields := strings.Fields(line)
-		if fields[0] == "cpu" {
-			if len(fields) < cpuFields {
-				return 0, fmt.Errorf("bad format of cpu stats")
-			}
-
-			var totalClockTicks uint64
-			for _, i := range fields[1:cpuFields] {
-				v, err := parseUint(i)
-				if err != nil {
-					return 0, err
-				}
-
-				totalClockTicks += v
-			}
-
-			return (totalClockTicks * uint64(time.Second)) / cpuTicks, nil
-		}
-	}
-
-	return 0, errors.New("bad stats format")
+	return fmt.Sprintf("Uso de CPU: %.2f%s", percentageCpu[0], "%")
 }
 
 // Revisar necesidad ---
@@ -136,59 +97,4 @@ func toInt(raw string) int {
 		panic(err)
 	}
 	return res
-}
-
-func parseUint(s string) (uint64, error) {
-	v, err := strconv.ParseInt(s, 10, 64)
-	if err != nil {
-		if errors.Is(err, strconv.ErrRange) {
-			return 0, nil
-		}
-
-		return 0, fmt.Errorf("cgroup: bad int format: %s", s)
-	}
-
-	if v < 0 {
-		return 0, nil
-	}
-
-	return uint64(v), nil
-}
-
-func readTextLines(filename string, opts ...TextReadOption) ([]string, error) {
-	var readOpts textReadOptions
-	for _, opt := range opts {
-		opt(&readOpts)
-	}
-
-	file, err := os.Open(filename)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-
-	var lines []string
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
-		if !readOpts.keepSpace {
-			line = strings.TrimSpace(line)
-		}
-		if readOpts.withoutBlanks && len(line) == 0 {
-			continue
-		}
-		if len(readOpts.omitPrefix) > 0 && strings.HasPrefix(line, readOpts.omitPrefix) {
-			continue
-		}
-
-		lines = append(lines, line)
-	}
-
-	return lines, scanner.Err()
-}
-
-func withoutBlank() TextReadOption {
-	return func(o *textReadOptions) {
-		o.withoutBlanks = true
-	}
 }

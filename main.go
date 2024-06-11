@@ -22,15 +22,10 @@ func main() {
 		ram := "Uso de RAM: " + parsedFreeRamPercentage
 		ip := "IP: " + utils.GetLocalIP().String()
 		temp := utils.GetTempCore()
-		cpuValue, err := utils.SystemCpuUsage()
-		if err != nil {
-			panic(err)
-		}
 
-		cpu := "Uso de CPU: " + strconv.Itoa(int(cpuValue))
+		cpu := "Uso de CPU: " + utils.GetCPUInfo()
 		var arrayTexts []string
 
-		arrayTexts = append(arrayTexts, "Stats: ")
 		arrayTexts = append(arrayTexts, " ")
 		arrayTexts = append(arrayTexts, ip)
 		arrayTexts = append(arrayTexts, "---------------")
