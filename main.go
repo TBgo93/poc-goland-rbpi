@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/signal"
 	"strconv"
+	"syscall"
 	"time"
 
 	"github.com/TBgo93/poc-goland-rbpi/textview"
@@ -12,14 +13,18 @@ import (
 )
 
 func main() {
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
+	sigs := make(chan os.Signal, 1)
+	done := make(chan bool, 1)
+
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
 	go func() {
-		for sig := range c {
-			fmt.Println(sig)
-			fmt.Println("Exiting...")
-		}
+		sig := <-sigs
+		fmt.Println(sig)
+		done <- true
 	}()
+	<-done
+	fmt.Println("Exiting...")
 
 	opts := textview.DefaultOpts
 	tv := textview.NewWithOptions(opts)
