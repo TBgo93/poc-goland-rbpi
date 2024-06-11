@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"os"
+	"os/signal"
 	"strconv"
 	"time"
 
@@ -43,5 +46,13 @@ func main() {
 		tv.DrawListOfStrings(arrayTexts)
 
 		time.Sleep(1 * time.Second)
+		c := make(chan os.Signal, 1)
+		signal.Notify(c, os.Interrupt)
+		go func() {
+			for sig := range c {
+				fmt.Println(sig)
+				fmt.Println("Exiting...")
+			}
+		}()
 	}
 }
