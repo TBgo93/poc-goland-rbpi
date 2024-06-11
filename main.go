@@ -4,13 +4,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/TBgo93/poc-goland-rbpi/test"
 	"github.com/TBgo93/poc-goland-rbpi/textview"
 	"github.com/TBgo93/poc-goland-rbpi/utils"
 )
 
 func main() {
-	// // Draw a text
 	opts := textview.DefaultOpts
 	tv := textview.NewWithOptions(opts)
 	for {
@@ -18,19 +16,21 @@ func main() {
 		freeRamPercentage := mem.MemAvailable * 100 / mem.MemTotal
 		parsedFreeRamPercentage := strconv.Itoa(freeRamPercentage) + "%"
 
-		// 	// Funciona pero muestra una linea, se resetea
-		// 	// y vuelve a mostrar linea
-		// 	// tv.DrawChars("Stats: " + "\n" + parsedFreeRamPercentage)
+		// Funciona pero muestra una linea, se resetea
+		// y vuelve a mostrar linea
+		// tv.DrawChars("Stats: " + "\n" + parsedFreeRamPercentage)
 		ram := "Uso de RAM: " + parsedFreeRamPercentage
 		ip := "IP: " + utils.GetLocalIP().String()
 		var arrayTexts []string
 
 		arrayTexts = append(arrayTexts, "Stats: ")
+		arrayTexts = append(arrayTexts, " ")
 		arrayTexts = append(arrayTexts, ram)
+		arrayTexts = append(arrayTexts, "---------------")
 		arrayTexts = append(arrayTexts, ip)
+		arrayTexts = append(arrayTexts, "---------------")
 
 		tv.DrawListOfStrings(arrayTexts)
-		test.MainTest()
 
 		time.Sleep(1 * time.Second)
 	}
