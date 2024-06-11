@@ -78,5 +78,4 @@ func MainTest() {
 	fmt.Println("Uso de RAM: " + parsedFreeRamPercentage)
 	fmt.Println("IP: ", GetLocalIP())
 	fmt.Println("----------")
-
 }
