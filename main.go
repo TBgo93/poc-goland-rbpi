@@ -1,35 +1,37 @@
 package main
 
 import (
-	"strconv"
-	"time"
+	// "strconv"
+	// "time"
 
-	"github.com/TBgo93/poc-goland-rbpi/textview"
-	"github.com/TBgo93/poc-goland-rbpi/utils"
+	// "github.com/TBgo93/poc-goland-rbpi/textview"
+	// "github.com/TBgo93/poc-goland-rbpi/utils"
+	"github.com/TBgo93/poc-goland-rbpi/test"
 )
 
 func main() {
-	// Draw a text
-	opts := textview.DefaultOpts
-	tv := textview.NewWithOptions(opts)
-	for {
-		mem := utils.ReadMemoryStats()
-		freeRamPercentage := mem.MemAvailable * 100 / mem.MemTotal
-		parsedFreeRamPercentage := strconv.Itoa(freeRamPercentage) + "%"
+	// // Draw a text
+	// opts := textview.DefaultOpts
+	// tv := textview.NewWithOptions(opts)
+	// for {
+	// 	mem := utils.ReadMemoryStats()
+	// 	freeRamPercentage := mem.MemAvailable * 100 / mem.MemTotal
+	// 	parsedFreeRamPercentage := strconv.Itoa(freeRamPercentage) + "%"
 
-		// Funciona pero muestra una linea, se resetea
-		// y vuelve a mostrar linea
-		// tv.DrawChars("Stats: " + "\n" + parsedFreeRamPercentage)
-		ram := "Uso de RAM: " + parsedFreeRamPercentage
-		ip := "IP: " + utils.GetLocalIP().String()
-		var arrayTexts []string
+	// 	// Funciona pero muestra una linea, se resetea
+	// 	// y vuelve a mostrar linea
+	// 	// tv.DrawChars("Stats: " + "\n" + parsedFreeRamPercentage)
+	// 	ram := "Uso de RAM: " + parsedFreeRamPercentage
+	// 	ip := "IP: " + utils.GetLocalIP().String()
+	// 	var arrayTexts []string
 
-		arrayTexts = append(arrayTexts, "Stats: ")
-		arrayTexts = append(arrayTexts, ram)
-		arrayTexts = append(arrayTexts, ip)
+	// 	arrayTexts = append(arrayTexts, "Stats: ")
+	// 	arrayTexts = append(arrayTexts, ram)
+	// 	arrayTexts = append(arrayTexts, ip)
 
-		tv.DrawListOfStrings(arrayTexts)
+	// 	tv.DrawListOfStrings(arrayTexts)
 
-		time.Sleep(1 * time.Second)
-	}
+	// 	time.Sleep(1 * time.Second)
+	// }
+	test.MainTest()
 }
