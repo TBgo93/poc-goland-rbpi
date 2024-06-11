@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"net"
 	"os"
@@ -48,6 +49,22 @@ func GetLocalIP() net.IP {
 	localAddress := conn.LocalAddr().(*net.UDPAddr)
 
 	return localAddress.IP
+}
+
+func GetTempCore() string {
+	data, err := os.ReadFile("/sys/class/thermal/thermal_zone0/temp")
+	if err != nil {
+		panic(err)
+	}
+
+	tempCommandResult := string(data)
+	parsedTemp, err := strconv.Atoi(tempCommandResult)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return fmt.Sprintf("Uso de CPU: %d", parsedTemp)
 }
 
 // Revisar necesidad ---

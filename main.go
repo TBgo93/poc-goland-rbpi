@@ -21,13 +21,16 @@ func main() {
 		// tv.DrawChars("Stats: " + "\n" + parsedFreeRamPercentage)
 		ram := "Uso de RAM: " + parsedFreeRamPercentage
 		ip := "IP: " + utils.GetLocalIP().String()
+		cpu := utils.GetTempCore()
 		var arrayTexts []string
 
 		arrayTexts = append(arrayTexts, "Stats: ")
 		arrayTexts = append(arrayTexts, " ")
-		arrayTexts = append(arrayTexts, ram)
-		arrayTexts = append(arrayTexts, "---------------")
 		arrayTexts = append(arrayTexts, ip)
+		arrayTexts = append(arrayTexts, "---------------")
+		arrayTexts = append(arrayTexts, cpu)
+		arrayTexts = append(arrayTexts, "---------------")
+		arrayTexts = append(arrayTexts, ram)
 		arrayTexts = append(arrayTexts, "---------------")
 
 		tv.DrawListOfStrings(arrayTexts)
