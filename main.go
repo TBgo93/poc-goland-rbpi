@@ -21,10 +21,12 @@ func main() {
 		// y vuelve a mostrar linea
 		// tv.DrawChars("Stats: " + "\n" + parsedFreeRamPercentage)
 		ram := "Uso de RAM: " + parsedFreeRamPercentage
+		ip := "IP: " + utils.GetLocalIP().String()
 		var arrayTexts []string
 
 		arrayTexts = append(arrayTexts, "Stats: ")
 		arrayTexts = append(arrayTexts, ram)
+		arrayTexts = append(arrayTexts, ip)
 
 		tv.DrawListOfStrings(arrayTexts)
 

@@ -2,6 +2,8 @@ package utils
 
 import (
 	"bufio"
+	"log"
+	"net"
 	"os"
 	"strconv"
 	"strings"
@@ -34,6 +36,18 @@ func ReadMemoryStats() Memory {
 		}
 	}
 	return res
+}
+
+func GetLocalIP() net.IP {
+	conn, err := net.Dial("udp", "8.8.8.8:80")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer conn.Close()
+
+	localAddress := conn.LocalAddr().(*net.UDPAddr)
+
+	return localAddress.IP
 }
 
 // Revisar necesidad ---
