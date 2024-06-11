@@ -12,23 +12,25 @@ import (
 	"github.com/TBgo93/poc-goland-rbpi/utils"
 )
 
+func handleSigInt(displayText *textview.TextView) {
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+	for range c {
+		fmt.Println("")
+		fmt.Println("Exiting...")
+		// off display
+		var arrayTexts []string
+		displayText.DrawListOfStrings(arrayTexts)
+		os.Exit(0)
+	}
+}
+
 func main() {
 	// Init display
 	opts := textview.DefaultOpts
 	tv := textview.NewWithOptions(opts)
 
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
-	go func() {
-		for range c {
-			fmt.Println("")
-			fmt.Println("Exiting...")
-			// off display
-			var arrayTexts []string
-			tv.DrawListOfStrings(arrayTexts)
-			os.Exit(0)
-		}
-	}()
+	handleSigInt(tv)
 
 	for {
 		mem := utils.ReadMemoryStats()
