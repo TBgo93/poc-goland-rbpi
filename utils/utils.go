@@ -58,6 +58,7 @@ func GetTempCore() string {
 	}
 
 	tempCommandResult := string(data)
+	tempCommandResult = tempCommandResult[:len(tempCommandResult)-1]
 	parsedTemp, err := strconv.Atoi(tempCommandResult)
 
 	if err != nil {
