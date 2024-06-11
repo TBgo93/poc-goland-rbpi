@@ -64,7 +64,9 @@ func GetTempCore() string {
 		panic(err)
 	}
 
-	return fmt.Sprintf("Uso de CPU: %d", parsedTemp)
+	calculatedTemp := int(parsedTemp / 1000)
+
+	return fmt.Sprintf("Uso de CPU: %d", calculatedTemp)
 }
 
 // Revisar necesidad ---
