@@ -81,6 +81,23 @@ func GetCPUInfo() string {
 	return fmt.Sprintf("Uso de CPU: %.2f%s", percentageCpu[0], "%")
 }
 
+func GetCores() (logical string, physical string) {
+	coreLogical, err := cpu.Counts(true)
+	if err != nil {
+		panic(err)
+	}
+
+	corePhysical, err := cpu.Counts(false)
+	if err != nil {
+		panic(err)
+	}
+
+	countCoreLogical := fmt.Sprintf("Logical Core: %d", coreLogical)
+	countCorePhysical := fmt.Sprintf("Physical Core: %d", corePhysical)
+
+	return countCoreLogical, countCorePhysical
+}
+
 // Revisar necesidad ---
 func parseLine(raw string) (key string, value int) {
 	text := strings.ReplaceAll(raw[:len(raw)-2], " ", "")

@@ -22,14 +22,18 @@ func main() {
 		ram := "Uso de RAM: " + parsedFreeRamPercentage
 		ip := "IP: " + utils.GetLocalIP().String()
 		temp := utils.GetTempCore()
-
 		cpu := utils.GetCPUInfo()
+		countCoreLogical, countCorePhysical := utils.GetCores()
+
 		var arrayTexts []string
 
-		arrayTexts = append(arrayTexts, " ")
+		// arrayTexts = append(arrayTexts, " ")
 		arrayTexts = append(arrayTexts, ip)
 		arrayTexts = append(arrayTexts, "---------------")
 		arrayTexts = append(arrayTexts, cpu)
+		arrayTexts = append(arrayTexts, "---------------")
+		arrayTexts = append(arrayTexts, countCoreLogical)
+		arrayTexts = append(arrayTexts, countCorePhysical)
 		arrayTexts = append(arrayTexts, "---------------")
 		arrayTexts = append(arrayTexts, ram)
 		arrayTexts = append(arrayTexts, "---------------")
