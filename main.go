@@ -13,19 +13,22 @@ import (
 )
 
 func main() {
+	// Init display
+	opts := textview.DefaultOpts
+	tv := textview.NewWithOptions(opts)
+
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
-
 	go func() {
-		for sig := range c {
-			fmt.Println(sig)
+		for range c {
+			// fmt.Println(sig)
 			fmt.Println("Exiting...")
-			os.Exit(1)
+			// off display
+			tv.Draw("")
+			os.Exit(0)
 		}
 	}()
 
-	opts := textview.DefaultOpts
-	tv := textview.NewWithOptions(opts)
 	for {
 		mem := utils.ReadMemoryStats()
 		freeRamPercentage := mem.MemAvailable * 100 / mem.MemTotal
