@@ -23,7 +23,7 @@ func main() {
 		ip := "IP: " + utils.GetLocalIP().String()
 		temp := utils.GetTempCore()
 
-		cpu := "Uso de CPU: " + utils.GetCPUInfo()
+		cpu := utils.GetCPUInfo()
 		var arrayTexts []string
 
 		arrayTexts = append(arrayTexts, " ")
