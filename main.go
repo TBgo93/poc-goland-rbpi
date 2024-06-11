@@ -21,10 +21,11 @@ func main() {
 	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
 	go func() {
 		for range c {
-			// fmt.Println(sig)
+			fmt.Println("")
 			fmt.Println("Exiting...")
 			// off display
-			tv.Draw("")
+			var arrayTexts []string
+			tv.DrawListOfStrings(arrayTexts)
 			os.Exit(0)
 		}
 	}()
