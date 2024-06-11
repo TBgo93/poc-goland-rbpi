@@ -30,7 +30,7 @@ func main() {
 	opts := textview.DefaultOpts
 	tv := textview.NewWithOptions(opts)
 
-	handleSigInt(tv)
+	go handleSigInt(tv)
 
 	for {
 		mem := utils.ReadMemoryStats()
